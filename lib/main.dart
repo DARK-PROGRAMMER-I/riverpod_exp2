@@ -1,19 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 void main() {
   runApp(const MyApp());
 }
-
-// extension OptionalInfixAddition<T extends num>on T?{
-//   T? operator +(T? other){
-//     final shadow = this;
-//     if(shadow != null){
-//       return shadow + (other ?? 0) as T;
-//     }else{
-//       return null;
-//     }
-//   }
-// }
 
 extension OperationalInfixAddition<T extends num> on T?{
   T? operator + (T? other){
@@ -25,6 +15,18 @@ extension OperationalInfixAddition<T extends num> on T?{
     }
   }
 }
+// This is the example below, that now if we have nullable value, but it wont effect.
+// final int? a = 1;
+// final int b = 1;
+// final c = a + b;
+
+class Counter extends StateNotifier<int?>{
+  Counter(): super(null);
+  increment(){
+    return state != null ? state +1: 1;
+  }
+}
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
